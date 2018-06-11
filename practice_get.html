@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	用户名：<input type="text" id="username">
+
+</body>
+<script>
+
+	document.getElementById('username').onblur = function(){
+		// 创建ajax对象
+		var xhr = new XMLHttpRequest();
+		// 兼容性判断
+		if(!xhr){
+			xhr =  new ActiveXObject();
+		}
+		// 监听事件
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				var text = xhr.responseText;
+				if(text == 1){
+					alert('seccess');
+				}else{
+					alert('fail');
+				}
+			}
+		}
+		// 打开链接,get方式
+		xhr.open('get','practice.php?user='+this.value);
+		// 发送
+		xhr.send();
+	}
+	
+</script>
+</html>
